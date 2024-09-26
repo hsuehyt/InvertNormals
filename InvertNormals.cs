@@ -1,26 +1,15 @@
 using UnityEngine;
 
-[ExecuteInEditMode] // Ensures the script runs in edit mode
 public class InvertNormals : MonoBehaviour
 {
-    void Awake() // Awake is called when the object is initialized
-    {
-        InvertMeshNormals();
-    }
-
-    void InvertMeshNormals()
+    void Start()
     {
         // Get the MeshFilter component from the GameObject
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         if (meshFilter != null)
         {
-            // Use sharedMesh instead of mesh to avoid leaking meshes
-            Mesh mesh = meshFilter.sharedMesh;
-            if (mesh == null)
-            {
-                Debug.LogError("No mesh found on the object.");
-                return;
-            }
+            // Access the mesh
+            Mesh mesh = meshFilter.mesh;
 
             // Invert the normals
             Vector3[] normals = mesh.normals;
